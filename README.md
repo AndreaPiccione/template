@@ -1,8 +1,11 @@
 Description of the repo here
 
 ## Repo Structure
+
 Generated using `tree -L 2 -I "_*"` (need to install via `brew install tree`)
 
+```bash
+.
 ├── LICENSE
 ├── Makefile
 ├── README.md
@@ -13,3 +16,4 @@ Generated using `tree -L 2 -I "_*"` (need to install via `brew install tree`)
 │   └── package
 └── test
     └── test_example.py
+```
