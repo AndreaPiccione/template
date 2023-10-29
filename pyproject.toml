@@ -1,0 +1,65 @@
+[build-system]
+build-backend = "poetry.core.masonry.api"
+requires = ["poetry-core"]
+
+[tool.poetry]
+authors = ["Andrea Piccione <andreapiccione17@gmail.com>"]
+description = "template"
+name = "template"
+packages = [{include = "package", from = "src"}]
+readme = "README.md"
+version = "0.1.0"
+
+[tool.poetry.dependencies]
+python = ">=3.11,<3.12"
+
+[tool.poetry.group.test.dependencies]
+pytest = "^7.4.0"
+
+[tool.poetry.group.dev.dependencies]
+black = ">=23.3.0"
+pre-commit = ">=3.3.3"
+ruff = ">=0.1.0,<1"
+mypy = "^1.4.1"
+
+[tool.black]
+line-length = 120
+target-version = ["py311"]
+
+[tool.ruff]
+src = ["src"]
+select = ["E", "F", "I", "N", "D207", "D208", "D300", "UP", "YTT", "ASYNC", "DTZ", "G10", "G101", "G201", "G202", "INP001", "PIE", "T20", "SIM", "PTH", "PD", "PLE", "PLR", "PLW", "TRY", "NPY", "RUF"]
+ignore = ["PD010", "PD901", "PLR2004", "UP017", "TRY003", "PLR0912", "PLR0913", "TRY300", "E712"]
+line-length = 120
+target-version = "py311"
+
+[tool.ruff.extend-per-file-ignores]
+"test/***" = ["INP001"]
+"__init__.py" = ["E402", "F401"]
+
+[toll.ruff.pep8-naming]
+classmethod-decorators = ["classmethod", "pydantic.validator", "pydantic.root_validator", "pydantic.validate_arguments"]
+
+[tool.mypy]
+plugins = "pydantic.mypy"
+check_untyped_defs = true
+disallow_any_unimported = true
+disallow_any_generics = true
+disallow_incomplete_defs = true
+disallow_subclassing_any = true
+disallow_untyped_calls = true
+disallow_untyped_decorators = false
+disallow_untyped_defs = true
+implicit_reexport = false
+no_implicit_optional = false
+python_version = "3.11"
+strict_equality = true
+show_error_codes = true
+warn_redundant_casts = true
+warn_return_any = true
+warn_unused_ignores = true
+
+[tool.pytest.ini_options]
+addopts = "-v"
+pythonpath = ["src"]
+testpaths = ["test"]
