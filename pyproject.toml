@@ -3,7 +3,7 @@ build-backend = "poetry.core.masonry.api"
 requires = ["poetry-core"]
 
 [tool.poetry]
-authors = ["Andrea Piccione <andreapiccione17@gmail.com>"]
+authors = ["Andrea Piccione <andrea.piccione.ap@gmail.com>"]
 description = "template"
 name = "template"
 packages = [{include = "package", from = "src"}]
@@ -17,33 +17,32 @@ python = ">=3.11,<3.12"
 pytest = "^7.4.0"
 
 [tool.poetry.group.dev.dependencies]
-black = ">=23.3.0"
 pre-commit = ">=3.3.3"
-ruff = ">=0.1.0,<1"
+ruff = ">=0.5.0, <1"
 mypy = "^1.4.1"
-
-[tool.black]
-line-length = 120
-target-version = ["py311"]
 
 [tool.ruff]
 src = ["src"]
-select = ["E", "F", "I", "N", "D207", "D208", "D300", "UP", "YTT", "ASYNC", "DTZ", "G10", "G101", "G201", "G202", "INP001", "PIE", "T20", "SIM", "PTH", "PD", "PLE", "PLR", "PLW", "TRY", "NPY", "RUF"]
-ignore = ["PD010", "PD901", "PLR2004", "UP017", "TRY003", "PLR0912", "PLR0913", "TRY300", "E712"]
 line-length = 120
 target-version = "py311"
 
-[tool.ruff.extend-per-file-ignores]
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W", "D207", "D208", "D300", "UP", "YTT", "ASYNC", "DTZ", "G10", "G101", "G201", "G202", "INP001", "PIE", "T20", "SIM", "PTH", "PD", "PLE", "PLR", "PLW", "TRY", "NPY", "RUF"]
+ignore = ["PD010", "PD901", "PLR2004", "UP017", "TRY003", "INP001", "PLR0912", "PLR0913", "TRY300", "E712"]
+
+[tool.ruff.lint.extend-per-file-ignores]
 "test/***" = ["INP001"]
 "__init__.py" = ["E402", "F401"]
 
-[toll.ruff.pep8-naming]
+
+[tool.ruff.lint.pep8-naming]
+# Allow Pydantic's `@validator` decorator to trigger class method treatment.
 classmethod-decorators = ["classmethod", "pydantic.validator", "pydantic.root_validator", "pydantic.validate_arguments"]
 
 [tool.mypy]
 plugins = "pydantic.mypy"
 check_untyped_defs = true
-disallow_any_unimported = true
+disallow_any_unimported  = true
 disallow_any_generics = true
 disallow_incomplete_defs = true
 disallow_subclassing_any = true

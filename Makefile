@@ -25,7 +25,7 @@ test:
 
 tests: test
 
-all: precommit tests build_image
+all: precommit tests
 
 image: build_image push_image
 
